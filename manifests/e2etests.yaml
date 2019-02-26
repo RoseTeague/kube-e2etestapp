@@ -220,6 +220,12 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: e2etests
+  labels:
+    kube-monkey/enabled: enabled
+    kube-monkey/identifier: e2etests
+    kube-monkey/mtbf: '3'
+    kube-monkey/kill-mode: fixed
+    kube-monkey/kill-value: '1'
 spec:
   strategy:
     type: RollingUpdate
@@ -230,6 +236,8 @@ spec:
     metadata:
       labels:
         app: e2etests
+        kube-monkey/enabled: enabled
+        kube-monkey/identifier: e2etests
     spec:
       volumes:
       - name: exporter-config
